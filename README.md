@@ -1,1 +1,25 @@
-# TrabajoPracticoIntegrador-Programacion1
+# Gestión de Datos de Países - TPI Programación 1
+
+## Descripción
+Aplicación en Python que permite gestionar información de países: búsquedas, filtros, ordenamientos y estadísticas.
+
+## Requisitos
+- Python 3.x
+- Archivo `paises.csv` en la misma carpeta
+
+## Instrucciones de uso
+1. Clonar el repositorio.
+2. Ejecutar `python main.py`.
+3. Seguir las opciones del menú.
+
+## Ejemplos
+- **Búsqueda**: "Arg" → muestra Argentina.
+- **Filtro por continente**: "Asia" → China, Japón, India.
+- **Estadísticas**: muestra promedios, máximos y conteo por continente.
+
+## Integrantes
+- Ana García
+- Luis Martínez
+
+## Dataset
+Incluye 12 países de ejemplo en `paises.csv`.

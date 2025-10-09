@@ -40,7 +40,7 @@ def ordenar_paises(paises, criterio, descendente=False):
     """Ordena la lista de países según el criterio indicado."""
     claves = {'a': 'nombre', 'b': 'poblacion', 'c': 'superficie'}
     if criterio not in claves:
-        print("❌ Criterio de ordenamiento inválido.")
+        print("  Criterio de ordenamiento inválido.")
         return paises
     clave = claves[criterio]
     return sorted(paises, key=lambda x: x[clave], reverse=descendente)
@@ -48,7 +48,7 @@ def ordenar_paises(paises, criterio, descendente=False):
 def mostrar_paises(paises):
     """Muestra una lista de países en formato tabular."""
     if not paises:
-        print("🔍 No se encontraron resultados.")
+        print("  No se encontraron resultados.")
         return
     print(f"\n{'País':<15} {'Población':<12} {'Superficie (km²)':<15} {'Continente'}")
     print("-" * 60)
@@ -58,7 +58,7 @@ def mostrar_paises(paises):
 def mostrar_estadisticas(paises):
     """Muestra estadísticas clave del dataset."""
     if not paises:
-        print("❌ No hay datos para calcular estadísticas.")
+        print("  No hay datos para calcular estadísticas.")
         return
 
     # País con mayor/menor población
@@ -77,11 +77,11 @@ def mostrar_estadisticas(paises):
         cont = p['continente']
         continentes[cont] = continentes.get(cont, 0) + 1
 
-    print("\n📊 ESTADÍSTICAS GENERALES")
-    print(f"• País con mayor población: {mayor_pob['nombre']} ({mayor_pob['poblacion']:,})")
-    print(f"• País con menor población: {menor_pob['nombre']} ({menor_pob['poblacion']:,})")
-    print(f"• Población promedio: {prom_pob:,.0f}")
-    print(f"• Superficie promedio: {prom_sup:,.0f} km²")
-    print("\n🌎 Cantidad de países por continente:")
+    print("\n  ESTADÍSTICAS GENERALES")
+    print(f"- País con mayor población: {mayor_pob['nombre']} ({mayor_pob['poblacion']:,})")
+    print(f"- País con menor población: {menor_pob['nombre']} ({menor_pob['poblacion']:,})")
+    print(f"- Población promedio: {prom_pob:,.0f}")
+    print(f"- Superficie promedio: {prom_sup:,.0f} km²")
+    print("\n  Cantidad de países por continente:")
     for cont, cant in continentes.items():
         print(f"  - {cont}: {cant}")

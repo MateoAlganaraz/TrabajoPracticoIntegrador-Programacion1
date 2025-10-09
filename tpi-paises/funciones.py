@@ -13,7 +13,7 @@ def cargar_datos(ruta):
                     fila['superficie'] = int(fila['superficie'])
                     paises.append(fila)
                 except (ValueError, KeyError) as e:
-                    print(f"⚠️  Advertencia: fila con datos inválidos ignorada: {fila}")
+                    print(f"   Advertencia: fila con datos inválidos ignorada: {fila}")
     except FileNotFoundError:
         raise FileNotFoundError(f"Archivo '{ruta}' no encontrado.")
     return paises

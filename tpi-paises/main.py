@@ -35,7 +35,7 @@ def main():
             mostrar_paises(resultados)
 
         elif opcion == "2":
-            continente = input("Ingrese continente (América, Europa, Asia, África, Oceanía): ").strip()
+            continente = input("Ingrese continente (América, Europa, Asia, África, Oceanía): ").lower().strip()
             resultados = filtrar_por_continente(paises, continente)
             mostrar_paises(resultados)
 

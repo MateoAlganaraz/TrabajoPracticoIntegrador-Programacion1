@@ -13,7 +13,11 @@ def mostrar_menu():
 
 #Función principal
 def main():
-    archivo = "paises.csv"
+    #Obtenemos la ruta completa del archivo main.py
+    import os 
+    directorio_actual = os.path.dirname(os.path.abspath(__file__))
+    archivo = os.path.join(directorio_actual, "paises.csv")
+        
     try:
         paises = cargar_datos(archivo)
         print(f"✅ Cargados {len(paises)} países desde '{archivo}'.")

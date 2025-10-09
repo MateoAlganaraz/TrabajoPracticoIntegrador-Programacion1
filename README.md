@@ -18,8 +18,8 @@ Aplicación en Python que permite gestionar información de países: búsquedas,
 - **Estadísticas**: muestra promedios, máximos y conteo por continente.
 
 ## Integrantes
-- Ana García
-- Luis Martínez
+- Mateo Algañaraz
+- Ignacio Rodríguez
 
 ## Dataset
 Incluye 12 países de ejemplo en `paises.csv`.

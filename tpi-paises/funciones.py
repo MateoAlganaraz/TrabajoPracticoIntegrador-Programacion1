@@ -4,7 +4,12 @@ def cargar_datos(ruta):
     """Carga los datos desde un archivo CSV y los convierte en una lista de diccionarios."""
     paises = []
     try:
+        #abre el archivo en modo lectura, especificando codificación UTF-8 para soportar caracteres especiales
+        #La sentencia with garantiza que el archivo se cierre automáticamente al finalizar
+        #Lo agrega con el alias 'file'
         with open(ruta, mode='r', encoding='utf-8') as file:
+            #Crea un objeto DictReader que itera sobre las filas del CSV y
+            #las convierte en diccionarios, usando la primera fila como claves.
             reader = csv.DictReader(file)
             for fila in reader:
                 # Validar y convertir tipos
@@ -13,28 +18,33 @@ def cargar_datos(ruta):
                     fila['superficie'] = int(fila['superficie'])
                     paises.append(fila)
                 except (ValueError, KeyError) as e:
-                    print(f"   Advertencia: fila con datos inválidos ignorada: {fila}")
+                    print(f"  Advertencia: fila con datos inválidos ignorada: {fila}")
     except FileNotFoundError:
         raise FileNotFoundError(f"Archivo '{ruta}' no encontrado.")
     return paises
+
 
 def buscar_pais_por_nombre(paises, nombre):
     """Busca países cuyo nombre contenga la cadena dada (insensible a mayúsculas)."""
     nombre = nombre.lower()
     return [p for p in paises if nombre in p['nombre'].lower()]
 
+
 def filtrar_por_continente(paises, continente):
     """Filtra países por continente (coincidencia exacta, insensible a mayúsculas)."""
     continente = continente.lower()
     return [p for p in paises if p['continente'].lower() == continente]
 
+
 def filtrar_por_poblacion(paises, min_pob, max_pob):
     """Filtra países dentro de un rango de población."""
     return [p for p in paises if min_pob <= p['poblacion'] <= max_pob]
 
+
 def filtrar_por_superficie(paises, min_sup, max_sup):
     """Filtra países dentro de un rango de superficie."""
     return [p for p in paises if min_sup <= p['superficie'] <= max_sup]
+
 
 def ordenar_paises(paises, criterio, descendente=False):
     """Ordena la lista de países según el criterio indicado."""
@@ -45,6 +55,7 @@ def ordenar_paises(paises, criterio, descendente=False):
     clave = claves[criterio]
     return sorted(paises, key=lambda x: x[clave], reverse=descendente)
 
+
 def mostrar_paises(paises):
     """Muestra una lista de países en formato tabular."""
     if not paises:
@@ -54,6 +65,7 @@ def mostrar_paises(paises):
     print("-" * 60)
     for p in paises:
         print(f"{p['nombre']:<15} {p['poblacion']:<12,} {p['superficie']:<15,} {p['continente']}")
+
 
 def mostrar_estadisticas(paises):
     """Muestra estadísticas clave del dataset."""

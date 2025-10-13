@@ -13,7 +13,7 @@ Aplicación en Python que permite gestionar información de países: búsquedas,
 3. Seguir las opciones del menú.
 
 ## Ejemplos
-- **Búsqueda**: "Arg" → muestra Argentina.
+- **Búsqueda**: "Ar" → muestra Argentina, Paraguay, etc.
 - **Filtro por continente**: "Asia" → China, Japón, India.
 - **Estadísticas**: muestra promedios, máximos y conteo por continente.
 

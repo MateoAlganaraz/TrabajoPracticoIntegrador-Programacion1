@@ -30,6 +30,10 @@ def cargar_datos(ruta):
 def buscar_pais_por_nombre(paises, nombre):
     """Busca países cuyo nombre contenga la cadena dada (insensible a mayúsculas)."""
     nombre = nombre.lower()
+
+    #Itera sobre cada país en la lista países
+    #Convierte el nombre del país a minúscula
+    #Verifica que la cadena buscada esté dentro del nombre del país
     return [p for p in paises if nombre in p['nombre'].lower()]
 
 

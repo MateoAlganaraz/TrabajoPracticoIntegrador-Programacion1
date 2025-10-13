@@ -8,11 +8,11 @@ def cargar_datos(ruta):
         #La sentencia with garantiza que el archivo se cierre automáticamente al finalizar
         #Lo agrega con el alias 'file'
 
-        with open(ruta, mode='r', encoding='utf-8') as file:
+        with open(ruta, mode='r', encoding='utf-8') as archivo:
             #Crea un objeto DictReader que itera sobre las filas del CSV y
             #las convierte en diccionarios, usando la primera fila como claves.
 
-            reader = csv.DictReader(file)
+            reader = csv.DictReader(archivo)
             for fila in reader:
                 # Validar y convertir tipos
                 try:

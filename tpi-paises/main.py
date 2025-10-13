@@ -29,7 +29,7 @@ def main():
     """
 
 
-    #Obtiene la ruta completa del directorio donde se encuentra este archivo
+    #Obtiene la ruta completa del directorio donde se encuentra este archivo.
     #Esto asegura que el archivo 'paises.csv' se busque en la misma carpeta,
     #incluso si el programa se ejecuta desde otra ubicación.
     import os 

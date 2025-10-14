@@ -1,17 +1,20 @@
 import csv
+import os
 
-def cargar_datos(ruta):
+def cargar_datos(): #Mensaje si el csv esta vacio
     """Carga los datos desde un archivo CSV y los convierte en una lista de diccionarios."""
     paises = []
     try:
-        #abre el archivo en modo lectura, especificando codificación UTF-8 para soportar caracteres especiales
-        #La sentencia with garantiza que el archivo se cierre automáticamente al finalizar
-        #Lo agrega con el alias 'file'
+        directorio_actual = os.path.dirname(os.path.abspath(__file__))
+        ruta = os.path.join(directorio_actual, "paises.csv")
 
+        #Abre el archivo en modo lectura, especificando codificación UTF-8 para soportar caracteres especiales
+        #La sentencia with garantiza que el archivo se cierre automáticamente al finalizar
+        #Lo agrega con el alias 'archivo'
         with open(ruta, mode='r', encoding='utf-8') as archivo:
+
             #Crea un objeto DictReader que itera sobre las filas del CSV y
             #las convierte en diccionarios, usando la primera fila como claves.
-
             reader = csv.DictReader(archivo)
             for fila in reader:
                 # Validar y convertir tipos
@@ -22,8 +25,7 @@ def cargar_datos(ruta):
                 except (ValueError, KeyError) as e:
                     print(f"  Advertencia: fila con datos inválidos ignorada: {fila}")
     except FileNotFoundError:
-        #Mensaje de error más claro y personalizado
-        raise FileNotFoundError(f"Archivo '{ruta}' no encontrado.")
+        print(f"Archivo '{ruta}' no encontrado.")
     return paises
 
 

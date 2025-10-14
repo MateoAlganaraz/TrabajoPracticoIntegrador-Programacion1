@@ -13,7 +13,7 @@ Aplicación en Python que permite gestionar información de países: búsquedas,
 3. Seguir las opciones del menú.
 
 ## Ejemplos
-- **Búsqueda**: "Ar" → muestra Argentina, Paraguay, etc.
+- **Búsqueda**: "Ar" → muestra Argentina, Paraguay,
 - **Filtro por continente**: "Asia" → China, Japón, India.
 - **Estadísticas**: muestra promedios, máximos y conteo por continente.
 
@@ -23,3 +23,7 @@ Aplicación en Python que permite gestionar información de países: búsquedas,
 
 ## Dataset
 Incluye 12 países de ejemplo en `paises.csv`.
+
+## Link video de presentación
+
+## Gemini te da fuentes para el informe, claude para mejorar el readme

@@ -1,26 +1,16 @@
 from funciones import *
 
-#Este archivo es el punto de entrada del programa. 
-#Gestiona el menú iteractivo y coordina las operaciones de búsqueda, filtrado, ordenamiento y estadísticas
-#usando funciones definidas en 'funciones.py'
-
 def main():
-    """
-    Función principal:
-    -Carga los datos desde el archivo CSV.
-    -Ejecuta un bucle de menú interactivo.
-    -Gestiona la entrada del usuario y llama a las funciones adecuadas.
-    -Incluye validaciones robustas para evitar errores de entrada.
-    """
+    """Punto de entrada de la aplicación: carga datos y gestiona el menú interactivo."""
     paises = cargar_datos()
     
-    #Si no se cargaron datos válidos, salir sin mostrar el menú
+    #Salir si no hay datos válidos
     if not paises:
         print("\n No se puede iniciar la aplicación: no hay datos válidos en 'paises.csv'.")
         print("Verifique que el archivo exista, no esté vacío y contenga datos correctos.")
-        return #Termina la función (y el programa)
+        return 
     
-    #Si hay datos, mostramos el menú
+    #Bucle principal del menú
     while True:
         mostrar_menu()
         opcion = input("Seleccione una opción: ").strip()
@@ -45,7 +35,6 @@ def main():
                 mostrar_paises(resultados)
 
             case "3":
-                    # Validación robusta con while para rango de población
                     while True:
                         try:
                             min_pob = int(input("Población mínima: "))
@@ -53,7 +42,7 @@ def main():
                             if min_pob > max_pob:
                                 print("La población mínima no puede ser mayor que la máxima. Intente nuevamente.")
                                 continue
-                            break  # Salir del while si todo es válido
+                            break 
                         except ValueError:
                             print("Por favor, ingrese valores numéricos enteros válidos. Intente nuevamente.")
                     
@@ -65,7 +54,7 @@ def main():
                     try:
                         min_sup = int(input("Superficie mínima (km²): "))
                         max_sup = int(input("Superficie máxima (km²): "))
-                        if min_sup > max_sup: #pedir de nuevo
+                        if min_sup > max_sup: 
                             print("La superficie mínima no puede ser mayor que la máxima.")
                             continue
                         break
@@ -77,7 +66,7 @@ def main():
                     
 
             case "5":
-                #Validación para el criterio de ordenamiento (a,b o c)
+                #Seleccionar criterio de ordenamiento
                 while True:
                     print("\nOrdenar por:")
                     print("a) Nombre")
@@ -88,7 +77,7 @@ def main():
                         break
                     print("\nOpción inválida. Por favor ingrese 'a', 'b', o 'c'.")
 
-                #Validación para el sentido del orden (a o d)
+                #Seleccionar orden (ascendente/descendente)
                 while True:
                     orden = input("¿Ascendente (a) o Descendente (d)? ").strip().lower()
                     if orden in ['a', 'd']:

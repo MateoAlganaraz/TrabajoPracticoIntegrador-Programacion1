@@ -2,10 +2,7 @@ import csv
 import os
 
 def mostrar_menu(): 
-    """
-    Esta funcón muestra el menú principal de la aplicación en la consola. 
-    Ofrece al usuario las opciones disponibles
-    """
+    """Muestra el menú principal de la aplicación"""
     print("\n=== GESTIÓN DE DATOS DE PAÍSES ===")
     print("1. Buscar país por nombre")
     print("2. Filtrar por continente")
@@ -16,13 +13,13 @@ def mostrar_menu():
     print("0. Salir")
 
 def cargar_datos(): 
-    """Carga los datos desde un archivo CSV y los convierte en una lista de diccionarios."""
+    """Carga países desde 'países.csv' y los convierte en una lista de diccionarios."""
     paises = []
     try:
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta = os.path.join(directorio_actual, "paises.csv")
 
-        with open(ruta, 'r', encoding='utf-8') as archivo:
+        with open(ruta,  'r', encoding='utf-8') as archivo:
             reader = csv.DictReader(archivo)
 
             #Verificar si el archivo tiene filas de datos
@@ -33,6 +30,7 @@ def cargar_datos():
             
             for fila in filas:
                 try:
+                    #Convierte campos numéricos
                     fila['poblacion'] = int(fila['poblacion'])
                     fila['superficie'] = int(fila['superficie'])
                     paises.append(fila)
@@ -60,12 +58,12 @@ def filtrar_por_continente(paises, continente):
 
 
 def filtrar_por_poblacion(paises, min_pob, max_pob):
-    """Filtra países dentro de un rango de población."""
+    """Filtra países cuuya población esté dentro del rango."""
     return [p for p in paises if min_pob <= p['poblacion'] <= max_pob]
 
 
 def filtrar_por_superficie(paises, min_sup, max_sup):
-    """Filtra países dentro de un rango de superficie."""
+    """Filtra países cuya superficie esté dentro del rango."""
     return [p for p in paises if min_sup <= p['superficie'] <= max_sup]
 
 
@@ -91,7 +89,7 @@ def mostrar_paises(paises):
 
 
 def mostrar_estadisticas(paises):
-    """Muestra estadísticas clave del dataset."""
+    """Muestra estadísticas generales del conjunto de países."""
     if not paises:
         print("  No hay datos para calcular estadísticas.")
         return
@@ -100,7 +98,7 @@ def mostrar_estadisticas(paises):
     mayor_pob = max(paises, key=lambda x: x['poblacion'])
     menor_pob = min(paises, key=lambda x: x['poblacion'])
 
-    # Promedios
+    # Calculo de promedios
     total_pob = sum(p['poblacion'] for p in paises)
     total_sup = sum(p['superficie'] for p in paises)
     prom_pob = total_pob / len(paises)
@@ -112,6 +110,7 @@ def mostrar_estadisticas(paises):
         cont = p['continente']
         continentes[cont] = continentes.get(cont, 0) + 1
 
+    #Mostrar resultados
     print("\n  ESTADÍSTICAS GENERALES")
     print(f"- País con mayor población: {mayor_pob['nombre']} ({mayor_pob['poblacion']:,})")
     print(f"- País con menor población: {menor_pob['nombre']} ({menor_pob['poblacion']:,})")

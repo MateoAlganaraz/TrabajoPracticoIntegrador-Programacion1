@@ -4,21 +4,6 @@ from funciones import *
 #Gestiona el menú iteractivo y coordina las operaciones de búsqueda, filtrado, ordenamiento y estadísticas
 #usando funciones definidas en 'funciones.py'
 
-
-def mostrar_menu(): #Agregar en funciones.py
-    """
-    Esta funcón muestra el menú principal de la aplicación en la consola. 
-    Ofrece al usuario las opciones disponibles
-    """
-    print("\n=== GESTIÓN DE DATOS DE PAÍSES ===")
-    print("1. Buscar país por nombre")
-    print("2. Filtrar por continente")
-    print("3. Filtrar por rango de población")
-    print("4. Filtrar por rango de superficie")
-    print("5. Ordenar países")
-    print("6. Mostrar estadísticas")
-    print("0. Salir")
-
 def main():
     """
     Función principal:
@@ -27,15 +12,15 @@ def main():
     -Gestiona la entrada del usuario y llama a las funciones adecuadas.
     -Incluye validaciones robustas para evitar errores de entrada.
     """
-
-    try:
-        paises = cargar_datos()
-        print(f"Datos cargados.")
-    except Exception as e:
-        print(f"Error al cargar el archivo: {e}")
-        return
-
-    #Bucle principal del menú
+    paises = cargar_datos()
+    
+    #Si no se cargaron datos válidos, salir sin mostrar el menú
+    if not paises:
+        print("\n No se puede iniciar la aplicación: no hay datos válidos en 'paises.csv'.")
+        print("Verifique que el archivo exista, no esté vacío y contenga datos correctos.")
+        return #Termina la función (y el programa)
+    
+    #Si hay datos, mostramos el menú
     while True:
         mostrar_menu()
         opcion = input("Seleccione una opción: ").strip()

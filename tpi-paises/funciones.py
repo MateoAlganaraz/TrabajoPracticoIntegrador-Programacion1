@@ -1,41 +1,55 @@
 import csv
 import os
 
-def cargar_datos(): #Mensaje si el csv esta vacio
+def mostrar_menu(): 
+    """
+    Esta funcón muestra el menú principal de la aplicación en la consola. 
+    Ofrece al usuario las opciones disponibles
+    """
+    print("\n=== GESTIÓN DE DATOS DE PAÍSES ===")
+    print("1. Buscar país por nombre")
+    print("2. Filtrar por continente")
+    print("3. Filtrar por rango de población")
+    print("4. Filtrar por rango de superficie")
+    print("5. Ordenar países")
+    print("6. Mostrar estadísticas")
+    print("0. Salir")
+
+def cargar_datos(): 
     """Carga los datos desde un archivo CSV y los convierte en una lista de diccionarios."""
     paises = []
     try:
         directorio_actual = os.path.dirname(os.path.abspath(__file__))
         ruta = os.path.join(directorio_actual, "paises.csv")
 
-        #Abre el archivo en modo lectura, especificando codificación UTF-8 para soportar caracteres especiales
-        #La sentencia with garantiza que el archivo se cierre automáticamente al finalizar
-        #Lo agrega con el alias 'archivo'
-        with open(ruta, mode='r', encoding='utf-8') as archivo:
-
-            #Crea un objeto DictReader que itera sobre las filas del CSV y
-            #las convierte en diccionarios, usando la primera fila como claves.
+        with open(ruta, 'r', encoding='utf-8') as archivo:
             reader = csv.DictReader(archivo)
-            for fila in reader:
-                # Validar y convertir tipos
+
+            #Verificar si el archivo tiene filas de datos
+            filas = list(reader)
+            if not filas:
+                print("El archivo 'paises.csv' está vacío (no contiene datos).")
+                return paises #retorna lista vacía
+            
+            for fila in filas:
                 try:
                     fila['poblacion'] = int(fila['poblacion'])
                     fila['superficie'] = int(fila['superficie'])
                     paises.append(fila)
                 except (ValueError, KeyError) as e:
                     print(f"  Advertencia: fila con datos inválidos ignorada: {fila}")
+
     except FileNotFoundError:
         print(f"Archivo '{ruta}' no encontrado.")
+    except Exception as e:
+        print(f" Error inesperado al leer el archivo {e}")
+
     return paises
 
 
 def buscar_pais_por_nombre(paises, nombre):
     """Busca países cuyo nombre contenga la cadena dada (insensible a mayúsculas)."""
     nombre = nombre.lower()
-
-    #Itera sobre cada país en la lista países
-    #Convierte el nombre del país a minúscula
-    #Verifica que la cadena buscada esté dentro del nombre del país
     return [p for p in paises if nombre in p['nombre'].lower()]
 
 

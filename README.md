@@ -100,3 +100,10 @@ País            Población    Superficie (km²)  Continente
 ------------------------------------------------------------
 Argentina       45,376,763   2,780,400         América
 Brasil          214,326,223  8,515,767         América
+
+# Participación de integrantes
+    Ignacio Rodriguez: Carpeta digital y video explicativo
+    Mateo Algañaraz: Repositorio de github y video explicativo
+
+# Link del video
+ 

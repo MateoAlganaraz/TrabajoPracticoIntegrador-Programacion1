@@ -25,6 +25,7 @@ def main():
                     print("El nombre no puede estar vacío. Por favor ingresa al menos un caracter")
                 resultados = buscar_pais_por_nombre(paises, nombre)
                 mostrar_paises(resultados)
+                print("-" * 60)
 
             case "2":
                 print("\n---FILTRAR POR CONTINENTE---")
@@ -35,6 +36,7 @@ def main():
                     print("El continente no puede estar vacío. Por favor ingresa un nombre válido.")
                 resultados = filtrar_por_continente(paises, continente)
                 mostrar_paises(resultados)
+                print("-" * 60)
 
             case "3":
                     print("\n---FILTRAR POR POBLACIÓN---")
@@ -51,6 +53,7 @@ def main():
                     
                     resultados = filtrar_por_poblacion(paises, min_pob, max_pob)
                     mostrar_paises(resultados)
+                    print("-" * 60)
 
             case "4":
                 print("\n---FILTRAR POR SUPERFICIE---")
@@ -67,13 +70,14 @@ def main():
 
                 resultados = filtrar_por_superficie(paises, min_sup, max_sup)
                 mostrar_paises(resultados)
+                print("-" * 60)
                     
 
             case "5":
                 print("\n---ORDENAR PAÍSES---")
                 #Seleccionar criterio de ordenamiento
                 while True:
-                    print("\nOrdenar por:")
+                    print("Ordenar por:")
                     print("a) Nombre")
                     print("b) Población")
                     print("c) Superficie")
@@ -93,10 +97,12 @@ def main():
 
                 resultados = ordenar_paises(paises, criterio, descendente)
                 mostrar_paises(resultados)
+                print("-" * 60)
 
             case "6":
                 print("\n---MOSTRAR ESTADÍSTICAS---")
                 mostrar_estadisticas(paises)
+                print("-" * 60)
 
             case "0":
                 print("¡Gracias por usar el sistema!")

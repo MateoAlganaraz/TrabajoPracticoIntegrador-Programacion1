@@ -17,6 +17,7 @@ def main():
 
         match opcion:
             case "1":
+                print("\n---BUSCAR PAÍS---")
                 while True:
                     nombre = input("Ingrese nombre (o parte del nombre) del país: ").strip()
                     if nombre:
@@ -26,6 +27,7 @@ def main():
                 mostrar_paises(resultados)
 
             case "2":
+                print("\n---FILTRAR POR CONTINENTE---")
                 while True:
                     continente = input("Ingrese continente (América, Europa, Asia, África, Oceanía): ").strip()
                     if continente:
@@ -35,6 +37,7 @@ def main():
                 mostrar_paises(resultados)
 
             case "3":
+                    print("\n---FILTRAR POR POBLACIÓN---")
                     while True:
                         try:
                             min_pob = int(input("Población mínima: "))
@@ -50,6 +53,7 @@ def main():
                     mostrar_paises(resultados)
 
             case "4":
+                print("\n---FILTRAR POR SUPERFICIE---")
                 while True:
                     try:
                         min_sup = int(input("Superficie mínima (km²): "))
@@ -66,6 +70,7 @@ def main():
                     
 
             case "5":
+                print("\n---ORDENAR PAÍSES---")
                 #Seleccionar criterio de ordenamiento
                 while True:
                     print("\nOrdenar por:")
@@ -90,6 +95,7 @@ def main():
                 mostrar_paises(resultados)
 
             case "6":
+                print("\n---MOSTRAR ESTADÍSTICAS---")
                 mostrar_estadisticas(paises)
 
             case "0":

@@ -58,7 +58,7 @@ def filtrar_por_continente(paises, continente):
 
 
 def filtrar_por_poblacion(paises, min_pob, max_pob):
-    """Filtra países cuuya población esté dentro del rango."""
+    """Filtra países cuya población esté dentro del rango."""
     return [p for p in paises if min_pob <= p['poblacion'] <= max_pob]
 
 

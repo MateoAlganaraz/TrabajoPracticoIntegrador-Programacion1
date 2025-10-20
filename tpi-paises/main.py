@@ -117,7 +117,13 @@ def main():
                 #Recargar la lista de países después de la edición
                 paises = cargar_datos()
                 print("-" * 60)
-                
+
+            case "9":
+                print("\n---ELIMINAR PAÍS---")
+                eliminar_pais()
+                paises = cargar_datos()
+                print("-"*60)
+
             case "0":
                 print("¡Gracias por usar el sistema!")
                 break

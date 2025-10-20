@@ -104,6 +104,20 @@ def main():
                 mostrar_estadisticas(paises)
                 print("-" * 60)
 
+            case "7":
+                print("\n---AGREGAR PAÍS---")
+                agregar_pais()
+                #Recarga la lista de países para que futuras operaciones usen los datos actualizados.
+                paises = cargar_datos()
+                print("-" * 60)
+
+            case "8":
+                print("\n---EDITAR PAÍS---")
+                editar_pais()
+                #Recargar la lista de países después de la edición
+                paises = cargar_datos()
+                print("-" * 60)
+                
             case "0":
                 print("¡Gracias por usar el sistema!")
                 break

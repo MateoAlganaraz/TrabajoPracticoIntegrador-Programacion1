@@ -1,6 +1,8 @@
 import csv
 import os
 
+"""PODER EDITAR Y AGREGAR PAÍS"""
+
 def mostrar_menu(): 
     """Muestra el menú principal de la aplicación"""
     print("\n=== GESTIÓN DE DATOS DE PAÍSES ===")

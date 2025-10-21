@@ -1,122 +1,75 @@
-# main.py
 from datos import cargar_datos
-from mostrar import mostrar_menu
-from gestion import agregar_pais, editar_pais, eliminar_pais
-from buscar_filtrar import (
-    buscar_pais_por_nombre,
-    filtrar_por_continente,
-    filtrar_por_poblacion,
-    filtrar_por_superficie,
-    ordenar_paises
-)
-from mostrar import mostrar_paises, mostrar_estadisticas
-
-def buscar_pais(paises):
-    print("\n---BUSCAR PAÍS---")
-    while True:
-        nombre = input("Nombre (o parte): ").strip()
-        if nombre:
-            break
-        print("El nombre no puede estar vacío.")
-    resultados = buscar_pais_por_nombre(paises, nombre)
-    mostrar_paises(resultados)
-    print("-" * 60)
-
-def filtrar_continente(paises):
-    print("\n---FILTRAR POR CONTINENTE---")
-    while True:
-        cont = input("Continente: ").strip()
-        if cont:
-            break
-        print("El continente no puede estar vacío.")
-    res = filtrar_por_continente(paises, cont)
-    mostrar_paises(res)
-    print("-" * 60)
-
-def filtrar_poblacion(paises):
-    print("\n---FILTRAR POR POBLACIÓN---")
-    while True:
-        try:
-            min_p = int(input("Población mínima: "))
-            max_p = int(input("Población máxima: "))
-            if min_p <= max_p:
-                break
-            print("Mínimo no puede ser mayor que máximo.")
-        except ValueError:
-            print("Ingrese números enteros válidos.")
-    res = filtrar_por_poblacion(paises, min_p, max_p)
-    mostrar_paises(res)
-    print("-" * 60)
-
-def filtrar_superficie(paises):
-    print("\n---FILTRAR POR SUPERFICIE---")
-    while True:
-        try:
-            min_s = int(input("Superficie mínima: "))
-            max_s = int(input("Superficie máxima: "))
-            if min_s <= max_s:
-                break
-            print("Mínimo no puede ser mayor que máximo.")
-        except ValueError:
-            print("Ingrese números enteros válidos.")
-    res = filtrar_por_superficie(paises, min_s, max_s)
-    mostrar_paises(res)
-    print("-" * 60)
-
-def ordenar(paises):
-    print("\n---ORDENAR PAÍSES---")
-    while True:
-        print("Ordenar por:\na) Nombre\nb) Población\nc) Superficie")
-        crit = input("Elija (a/b/c): ").strip().lower()
-        if crit in ['a','b','c']:
-            break
-        print("Opción inválida.")
-    while True:
-        ord_opc = input("¿Ascendente (a) o Descendente (d)? ").strip().lower()
-        if ord_opc in ['a','d']:
-            desc = ord_opc == 'd'
-            break
-        print("Ingrese 'a' o 'd'.")
-    res = ordenar_paises(paises, crit, desc)
-    mostrar_paises(res)
-    print("-" * 60)
+from menu import mostrar_menu
+from busqueda import buscar_pais, filtrar_continente, filtrar_poblacion, filtrar_superficie, ordenar_paises_opcion
+from visualizacion import mostrar_estadisticas
+from edicion import agregar_pais, editar_pais, eliminar_pais
 
 def main():
     paises = cargar_datos()
     if not paises:
-        print("\nNo se puede iniciar: no hay datos válidos en 'paises.csv'.")
-        print("Verifique el archivo.")
+        print("\nNo se puede iniciar la aplicación: no hay datos válidos en 'paises.csv'.")
+        print("Verifique que el archivo exista, no esté vacío y contenga datos correctos.")
         return
+
     while True:
         mostrar_menu()
-        op = input("Seleccione una opción: ").strip()
-        match op:
-            case "1": buscar_pais(paises)
-            case "2": filtrar_continente(paises)
-            case "3": filtrar_poblacion(paises)
-            case "4": filtrar_superficie(paises)
-            case "5": ordenar(paises)
-            case "6": 
+        opcion = input("Seleccione una opción: ").strip()
+
+        match opcion:
+            case "1":
+                print("\n---BUSCAR PAÍS---")
+                buscar_pais(paises)
+                print("-" * 60)
+
+            case "2":
+                print("\n---FILTRAR POR CONTINENTE---")
+                filtrar_continente(paises)
+                print("-" * 60)
+
+            case "3":
+                print("\n---FILTRAR POR POBLACIÓN---")
+                filtrar_poblacion(paises)
+                print("-" * 60)
+
+            case "4":
+                print("\n---FILTRAR POR SUPERFICIE---")
+                filtrar_superficie(paises)
+                print("-" * 60)
+
+            case "5":
+                print("\n---ORDENAR PAÍSES---")
+                ordenar_paises_opcion(paises)
+                print("-" * 60)
+
+            case "6":
                 print("\n---MOSTRAR ESTADÍSTICAS---")
                 mostrar_estadisticas(paises)
                 print("-" * 60)
-            case "7": 
+
+            case "7":
+                print("\n---AGREGAR PAÍS---")
                 agregar_pais()
-                paises = cargar_datos()
+                paises = cargar_datos()  # Recargar
                 print("-" * 60)
-            case "8": 
+
+            case "8":
+                print("\n---EDITAR PAÍS---")
                 editar_pais()
-                paises = cargar_datos()
+                paises = cargar_datos()  # Recargar
                 print("-" * 60)
-            case "9": 
+
+            case "9":
+                print("\n---ELIMINAR PAÍS---")
                 eliminar_pais()
-                paises = cargar_datos()
+                paises = cargar_datos()  # Recargar
                 print("-" * 60)
-            case "0": 
+
+            case "0":
                 print("¡Gracias por usar el sistema!")
                 break
-            case _: 
-                print("Opción inválida.")
+
+            case _:
+                print("Opción inválida. Intente nuevamente.")
 
 if __name__ == "__main__":
     main()

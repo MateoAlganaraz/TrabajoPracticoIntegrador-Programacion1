@@ -48,20 +48,17 @@ def main():
 
             case "7":
                 print("\n---AGREGAR PAÍS---")
-                agregar_pais()
-                paises = cargar_datos()  # Recargar
+                agregar_pais(paises)  
                 print("-" * 60)
 
             case "8":
                 print("\n---EDITAR PAÍS---")
-                editar_pais()
-                paises = cargar_datos()  # Recargar
+                editar_pais(paises)   
                 print("-" * 60)
 
             case "9":
                 print("\n---ELIMINAR PAÍS---")
-                eliminar_pais()
-                paises = cargar_datos()  # Recargar
+                eliminar_pais(paises) 
                 print("-" * 60)
 
             case "0":

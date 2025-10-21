@@ -1,6 +1,3 @@
-from datos import cargar_datos, guardar_paises
-from visualizacion import mostrar_paises
-
 def _input_no_vacio(mensaje):
     while True:
         valor = input(mensaje).strip()
@@ -8,14 +5,15 @@ def _input_no_vacio(mensaje):
             return valor
         print("Este campo no puede estar vacío.")
 
-def agregar_pais():
-    paises = cargar_datos()
+def agregar_pais(paises):
+    """Agrega un nuevo país a la lista en memoria y guarda los cambios."""
     while True:
         nombre = _input_no_vacio("Nombre del país: ")
         if any(p['nombre'].lower() == nombre.lower() for p in paises):
             print(f"El país '{nombre}' ya está registrado.")
         else:
             break
+
     while True:
         try:
             poblacion = int(input("Población: "))
@@ -24,6 +22,7 @@ def agregar_pais():
             print("La población debe ser no negativa.")
         except ValueError:
             print("Ingrese un número entero válido.")
+
     while True:
         try:
             superficie = int(input("Superficie (km²): "))
@@ -32,27 +31,44 @@ def agregar_pais():
             print("La superficie debe ser no negativa.")
         except ValueError:
             print("Ingrese un número entero válido.")
+
     continente = _input_no_vacio("Continente (América, Europa, Asia, África, Oceanía): ")
-    nuevo_pais = {'nombre': nombre, 'poblacion': poblacion, 'superficie': superficie, 'continente': continente}
+
+    nuevo_pais = {
+        'nombre': nombre,
+        'poblacion': poblacion,
+        'superficie': superficie,
+        'continente': continente
+    }
     paises.append(nuevo_pais)
+
+    from datos import guardar_paises
     guardar_paises(paises)
     print(f"País '{nombre}' agregado correctamente.")
 
-def editar_pais():
-    paises = cargar_datos()
+def editar_pais(paises):
+    """Edita un país existente en la lista en memoria y guarda los cambios."""
     if not paises:
         print("No hay países registrados.")
         return
+
     while True:
         nombre_buscar = _input_no_vacio("Nombre del país a editar: ")
         pais = next((p for p in paises if p['nombre'].lower() == nombre_buscar.lower()), None)
         if pais:
             break
         print("País no encontrado.")
+
     print(f"\nEditando: {pais['nombre']}")
+
     nuevo_nombre = input(f"Nuevo nombre [{pais['nombre']}]: ").strip()
     if nuevo_nombre:
-        pais['nombre'] = nuevo_nombre
+        # Verificar que no se duplique con otro país (distinto del actual)
+        if any(p['nombre'].lower() == nuevo_nombre.lower() and p is not pais for p in paises):
+            print(f"Ya existe otro país con el nombre '{nuevo_nombre}'.")
+        else:
+            pais['nombre'] = nuevo_nombre
+
     for campo, texto in [('poblacion', 'población'), ('superficie', 'superficie (km²)')]:
         while True:
             entrada = input(f"Nueva {texto} [{pais[campo]}]: ").strip()
@@ -66,24 +82,30 @@ def editar_pais():
                 print(f"La {texto} debe ser no negativa.")
             except ValueError:
                 print("Ingrese un número entero válido.")
+
     nuevo_cont = input(f"Nuevo continente [{pais['continente']}]: ").strip()
     if nuevo_cont:
         pais['continente'] = nuevo_cont
+
+    from datos import guardar_paises
     guardar_paises(paises)
     print("País actualizado correctamente.")
 
-def eliminar_pais():
-    paises = cargar_datos()
+def eliminar_pais(paises):
+    """Elimina un país de la lista en memoria y guarda los cambios."""
     if not paises:
         print("No hay países registrados.")
         return
+
     while True:
         nombre = _input_no_vacio("Nombre del país a eliminar: ")
         pais = next((p for p in paises if p['nombre'].lower() == nombre.lower()), None)
         if pais:
             confirm = input(f"¿Está seguro de eliminar '{pais['nombre']}'? (s/n): ").strip().lower()
             if confirm in ['s', 'si', 'sí']:
-                paises = [p for p in paises if p['nombre'].lower() != nombre.lower()]
+                # Eliminar el país de la lista en memoria
+                paises[:] = [p for p in paises if p['nombre'].lower() != nombre.lower()]
+                from datos import guardar_paises
                 guardar_paises(paises)
                 print(f"País '{pais['nombre']}' eliminado correctamente.")
             else:

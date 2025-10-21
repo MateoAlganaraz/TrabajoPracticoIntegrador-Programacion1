@@ -1,3 +1,8 @@
+# Participantes
+    Ignacio Rodriguez: Carpeta digital y video explicativo 
+    Mateo Algañaraz: Repositorio y video explicativo
+    -COMISIÓN 3
+
 # Gestión de Datos de Países
     Sistema de gestión y análisis de datos geográficos que permite buscar, filtrar, ordenar y visualizar estadísticas de países a partir de un archivo CSV.
 
@@ -19,27 +24,36 @@
 
     No se requieren dependencias externas.
 
+# Instrucciones de uso
+    -Ubícate en la carpeta del proyecto desde tu terminal.
+    -Asegúrate de que exista el archivo 'paises.csv' en la misma carpeta, con el formato correcto (ver ejemplo abajo)
+    -Ejecuta el programa con el siguiente comando: python main.py
+    -Sigue el menú interactivo para navegar por las opciones
+    -Al realizar operaciones de agregar, editar o eliminar, los cambios se guardan automáticamente en 'paises.csv'
+
 # Descripción de Archivos
-    --funciones.py
-    Contiene todas las funciones de lógica del sistema:
-
-    mostrar_menu(): Muestra el menú principal
-    cargar_datos(): Lee y valida el archivo CSV
-    buscar_pais_por_nombre(): Búsqueda por coincidencia parcial
-    filtrar_por_continente(): Filtrado por continente exacto
-    filtrar_por_poblacion(): Filtrado por rango de población
-    filtrar_por_superficie(): Filtrado por rango de superficie
-    ordenar_paises(): Ordenamiento por múltiples criterios
-    mostrar_paises(): Visualización tabular de resultados
-    mostrar_estadisticas(): Cálculo y muestra de métricas
-
-    --main.py
-    Archivo principal que:
-
-    Carga los datos iniciales
-    Gestiona el bucle del menú interactivo
-    Valida entradas del usuario
-    Coordina las llamadas a funciones
+    ~ main.py
+        Archivo principal que:
+        -Carga los datos iniciales.
+        -Gestiona el bucle del menú interactivo.
+        -Valida entradas del usuario.
+        -Coordina las llamadas a funciones.
+    ~ datos.py
+        Contiene funciones para:
+        -Cargar datos desde 'paises.csv'.
+    ~ edicion.py
+        Gestiona la lógica para:
+        -Agregar, editar y eliminar países.
+        -Validar entradas del usuario.
+    ~ busqueda.py
+        Implementa:
+        -Búsqueda por nombre.
+        -Filtros por continente, población y superficie
+        -Ordenamiento de países
+    ~ visualizacion.py
+        Se encarga de:
+        -Mostrar países en formato tabular.
+        -Calcular y mostrar estadísticas generales.
 
 # Manejo de Errores
     El sistema incluye validaciones para:
@@ -84,6 +98,8 @@
     ESTADÍSTICAS GENERALES
     - País con mayor población: China (1,439,323,776)
     - País con menor población: Nueva Zelanda (5,084,300)
+    - País con mayor superficie: Rusia (17,098,246 km²)
+    - País con menor superficie: Mónaco (2 km²)
     - Población promedio: 217,493,956
     - Superficie promedio: 3,291,162 km²
 
@@ -100,10 +116,6 @@ País            Población    Superficie (km²)  Continente
 ------------------------------------------------------------
 Argentina       45,376,763   2,780,400         América
 Brasil          214,326,223  8,515,767         América
-
-# Participación de integrantes
-    Ignacio Rodriguez: Carpeta digital y video explicativo
-    Mateo Algañaraz: Repositorio de github y video explicativo
 
 # Link del video
  

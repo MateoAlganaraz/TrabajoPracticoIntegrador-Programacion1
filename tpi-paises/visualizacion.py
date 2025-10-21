@@ -41,9 +41,11 @@ def mostrar_estadisticas(paises):
     print("\n  ESTADÍSTICAS GENERALES")
     print(f"- País con mayor población: {mayor_pob['nombre']} ({mayor_pob['poblacion']:,})")
     print(f"- País con menor población: {menor_pob['nombre']} ({menor_pob['poblacion']:,})")
+    print(f"- País con mayor superficie: {mayor_sup['nombre']} ({mayor_sup['superficie']:,} km²)")
+    print(f"- País con menor superficie: {menor_sup['nombre']} ({menor_sup['superficie']:,} km²)")
     print(f"- Población promedio: {prom_pob:,.0f}")
     print(f"- Superficie promedio: {prom_sup:,.0f} km²")
-    
+
     print("\n  Cantidad de países por continente:")
     for cont, cant in continentes.items():
         print(f"  - {cont}: {cant}")

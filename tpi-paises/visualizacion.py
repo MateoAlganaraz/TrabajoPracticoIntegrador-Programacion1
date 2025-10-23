@@ -3,7 +3,7 @@ from datos import cargar_datos
 def mostrar_paises(paises):
     """Muestra países en formato tabular."""
     if not paises:
-        print("  No se encontraron resultados.")
+        print("No se encontraron resultados.")
         return
     print(f"\n{'País':<15} {'Población':<12} {'Superficie (km²)':<15} {'Continente'}")
     print("-" * 60)

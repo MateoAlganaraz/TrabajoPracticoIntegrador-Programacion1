@@ -10,7 +10,6 @@ def mostrar_paises(paises):
     for p in paises:
         print(f"{p['nombre']:<15} {p['poblacion']:<12,} {p['superficie']:<15,} {p['continente']}")
 
-
 def mostrar_estadisticas(paises):
     """Muestra estadísticas del conjunto de países."""
     if not paises:

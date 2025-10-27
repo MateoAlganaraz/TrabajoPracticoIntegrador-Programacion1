@@ -26,7 +26,6 @@
 
 # Instrucciones de uso
     -Ubícate en la carpeta del proyecto desde tu terminal.
-    -Asegúrate de que exista el archivo 'paises.csv' en la misma carpeta, con el formato correcto (ver ejemplo abajo)
     -Ejecuta el programa con el siguiente comando: python main.py
     -Sigue el menú interactivo para navegar por las opciones
     -Al realizar operaciones de agregar, editar o eliminar, los cambios se guardan automáticamente en 'paises.csv'
